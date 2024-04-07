@@ -10,8 +10,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import org.springframework.http.ResponseEntity;
-
 import com.microservice.usuarios.model.domain.Phone;
 import com.microservice.usuarios.model.domain.User;
 import com.microservice.usuarios.model.dto.UserDto;
@@ -41,7 +39,6 @@ public class UsuarioService {
             //Valida si correo existe previamente
             Query query = em.createQuery("SELECT u.email FROM User u WHERE u.email = :email");
             query.setParameter("email", userDto.getEmail());
-            System.out.println("DVV");
             if(query.getResultList().size() != 0) {
             	mensajeSalida = "{\"mensaje\":\"400 - El correo ya registrado\"}";
             	System.out.println("El correo ya registrado");
@@ -49,16 +46,6 @@ public class UsuarioService {
             else {
     	        // Iniciar transacción
     	        em.getTransaction().begin();
-    			System.out.println(userDto.getName());
-    			System.out.println(userDto.getEmail());
-    			System.out.println(userDto.getPassword());
-    			
-    			for (Phone phone : userDto.getPhones()) {
-    	            System.out.println(phone.getId());
-    	            System.out.println(phone.getNumber());
-    	            System.out.println(phone.getCitycode());
-    	            System.out.println(phone.getContrycode());
-    	        }
     	
     	        // Crear una nueva entidad y guardarla en la base de datos
     	        User user = new User();
@@ -103,10 +90,6 @@ public class UsuarioService {
     	        String phones = "";
     			for(Long phoneId : user.getPhones()) {
     				Phone phone = em.find(Phone.class, phoneId);
-    	            System.out.println(phone.getId());
-    	            System.out.println(phone.getNumber());
-    	            System.out.println(phone.getCitycode());
-    	            System.out.println(phone.getContrycode());
     	            phones = phones + phone.getNumber() + " - " + phone.getCitycode() + " - " + phone.getContrycode() + ";";
     			}
     	        
@@ -128,7 +111,7 @@ public class UsuarioService {
         return mensajeSalida;
 	}
 
-	public static String findUser(User usuario) {
+	/*public static String findUser(User usuario) {
     	
         String mensajeSalida = "";
 
@@ -171,5 +154,5 @@ public class UsuarioService {
     	
         return mensajeSalida;
 
-	}
+	}*/
 }

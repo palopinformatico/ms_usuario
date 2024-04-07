@@ -32,13 +32,13 @@ import java.util.regex.Pattern;
 @RequestMapping(value = "/api/usuarios/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 public class UsuarioResource {
 
-    @GetMapping(value = "/traeUsuario", produces = "application/json")
+    /*@GetMapping(value = "/traeUsuario", produces = "application/json")
     public ResponseEntity<String> traeUsuario(@RequestBody User usuario) throws Exception {
     	
     	String mensajeSalida = UsuarioService.findUser(usuario);
     	
     	return ResponseEntity.ok(mensajeSalida); 
-    }
+    }*/
 
     @PostMapping(value = "/creaUsuario", produces = "application/json")
     public ResponseEntity<String> creaUsuario(@RequestBody UserDto userDto) throws Exception {
