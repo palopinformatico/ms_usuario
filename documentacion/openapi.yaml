@@ -1,0 +1,106 @@
+openapi: 3.0.3
+info:
+  title: Usuarios API 1.0
+  description: 
+    Este es la documentacion de un API de creación de usuarios.
+  contact:
+    email: danielvegavargas@gmail.com
+  license:
+    name: ""
+    url: ""
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api/v1
+tags:
+  - name: usuario
+    description: Crea un usuario en la base de datos
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /creaUsuario:
+    post:
+      tags:
+        - creaUsuario
+      summary: Crea un usuario en la base de datos
+      description: Crea un usuario en la base de datos
+      operationId: creaUsuario
+      requestBody:
+        description: Crea un usuario en la base de datos
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'          
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: La dirección de correo electrónico no es válida
+        '401':
+          description: El correo ya registrado
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '10'
+        name:
+          type: string
+          example: 'Juan Rodriguez'
+        email:
+          type: string
+          example: 'juan@odriguez.org'
+        password:
+          type: string
+          example: 'hunter2'
+        phone:
+          type: number
+          example: 1
+        created:
+          type: string
+          example: '2024-04-06T23: 38: 51.899693600'
+        modified:
+          type: string
+          example: '2024-04-06T23: 38: 51.899693600'
+        last_login:
+          type: string
+          example: '2024-04-06T23: 38: 51.899693600'
+        token:
+          type: string
+          example: 'bfa2458c-c04b-4b75-9c75-b8ca72ce399c'
+        isactive:
+          type: string
+          example: 'Y'
+      xml:
+        name: user
+    Phone:
+      type: object
+      properties:
+        id:
+          type: string
+          example: '10'
+        number:
+          type: string
+          example: '1234567'
+        citycode:
+          type: string
+          example: '1'
+        contrycode:
+          type: string
+          example: '57'
